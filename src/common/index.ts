@@ -10,13 +10,20 @@ import {RatingComponent} from "./components/rating/rating.component";
 import {SpinnerComponent} from "./components/spinner/spinner.component";
 import {AuthenticatedGuard} from "./authenticated.guard";
 import {CollapsableSidebarContainer} from "./containers/collapsable-sidebar/collapsable-sidebar.container";
+import {FormGroupTextareaComponent} from "./components/form/form-group-textarea/form-group-textarea.component";
+import {FormGroupTextboxComponent} from "./components/form/form-group-textbox/form-group-textbox.component";
+import {FormGroupPasswordComponent} from "./components/form/form-group-password/form-group-password.component";
+import {FormGroupFooterComponent} from "./components/form/form-group-footer/form-group-footer.component";
+import {FormGroupContentComponent} from "./components/form/form-group-content/form-group-content.component";
 
 @NgModule({
     imports: [CommonModule, RouterModule],
     declarations: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent,
-        SpinnerComponent, CollapsableSidebarContainer],
+        SpinnerComponent, CollapsableSidebarContainer, FormGroupContentComponent, FormGroupFooterComponent, FormGroupPasswordComponent,
+        FormGroupTextareaComponent, FormGroupTextboxComponent],
     exports: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent,
-        SpinnerComponent, CollapsableSidebarContainer],
+        SpinnerComponent, CollapsableSidebarContainer, FormGroupContentComponent, FormGroupFooterComponent, FormGroupPasswordComponent,
+        FormGroupTextareaComponent, FormGroupTextboxComponent],
     providers: [AuthenticatedGuard]
 })
 export class CommonLogicModule {
