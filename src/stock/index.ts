@@ -9,9 +9,10 @@ import {StockService} from "./services/stock.service";
 import {FavoriteWinesComponent} from "./components/favorite-wines/favorite-wines.component";
 import {WineResultComponent} from "./components/wine-result/wine-result.component";
 import {WineResultsComponent} from "./components/wine-results/wine-results.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
-    imports: [CommonModule, routing, CommonLogicModule],
+    imports: [FormsModule, ReactiveFormsModule, CommonModule, routing, CommonLogicModule],
     declarations: [StockPageContainer, AddStockPageContainer, EditStockPageContainer, FavoriteWinesComponent, WineResultComponent, WineResultsComponent],
     providers: [StockService]
 })
