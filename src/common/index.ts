@@ -15,9 +15,10 @@ import {FormGroupTextboxComponent} from "./components/form/form-group-textbox/fo
 import {FormGroupPasswordComponent} from "./components/form/form-group-password/form-group-password.component";
 import {FormGroupFooterComponent} from "./components/form/form-group-footer/form-group-footer.component";
 import {FormGroupContentComponent} from "./components/form/form-group-content/form-group-content.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
-    imports: [CommonModule, RouterModule],
+    imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule],
     declarations: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent,
         SpinnerComponent, CollapsableSidebarContainer, FormGroupContentComponent, FormGroupFooterComponent, FormGroupPasswordComponent,
         FormGroupTextareaComponent, FormGroupTextboxComponent],
