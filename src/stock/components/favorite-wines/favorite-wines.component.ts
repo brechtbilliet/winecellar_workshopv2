@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-
+import {Component, Input, Output, EventEmitter} from "@angular/core";
+import {Wine} from "../../entities/Wine";
 @Component({
     selector: "favorite-wines",
     styles: [require("./favorite-wines.component.scss")],
@@ -8,12 +8,12 @@ import {Component} from "@angular/core";
         <h2><i class="fa fa-star"></i>&nbsp;Favorites</h2>
         <table class="table table-striped">
             <tbody>
-            <tr>
+            <tr *ngFor="let wine of wines">
                 <td style="min-width:70px;">
-                    <number-picker></number-picker>
+                    <number-picker [amount]="wine.inStock" (setAmount)="onSetStock(wine, $event)"></number-picker>
                 </td>
-                <td style="max-width: 200px;">fakename</td>
-                <td>0/5</td>
+                <td style="max-width: 200px;">{{wine.name}}</td>
+                <td>{{wine.myRating}}/5</td>
             </tr>
             </tbody>
         </table>
@@ -21,4 +21,10 @@ import {Component} from "@angular/core";
         `
 })
 export class FavoriteWinesComponent {
+    @Input() wines: Array<Wine>;
+    @Output() setStock = new EventEmitter<{wine: Wine, value: number}>();
+
+    onSetStock(wine: Wine, value: number): void {
+        this.setStock.emit({wine, value});
+    }
 }
