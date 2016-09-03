@@ -9,11 +9,14 @@ import {PanelComponent} from "./components/panel/panel.component";
 import {RatingComponent} from "./components/rating/rating.component";
 import {SpinnerComponent} from "./components/spinner/spinner.component";
 import {AuthenticatedGuard} from "./authenticated.guard";
+import {CollapsableSidebarContainer} from "./containers/collapsable-sidebar/collapsable-sidebar.container";
 
 @NgModule({
     imports: [CommonModule, RouterModule],
-    declarations: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent, SpinnerComponent],
-    exports: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent, SpinnerComponent],
+    declarations: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent,
+        SpinnerComponent, CollapsableSidebarContainer],
+    exports: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent,
+        SpinnerComponent, CollapsableSidebarContainer],
     providers: [AuthenticatedGuard]
 })
 export class CommonLogicModule {

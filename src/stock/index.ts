@@ -6,10 +6,13 @@ import {CommonLogicModule} from "../common/index";
 import {AddStockPageContainer} from "./containers/add-stock-page/add-stock-page.container";
 import {EditStockPageContainer} from "./containers/edit-stock-page/edit-stock-page.container";
 import {StockService} from "./services/stock.service";
+import {FavoriteWinesComponent} from "./components/favorite-wines/favorite-wines.component";
+import {WineResultComponent} from "./components/wine-result/wine-result.component";
+import {WineResultsComponent} from "./components/wine-results/wine-results.component";
 
 @NgModule({
     imports: [CommonModule, routing, CommonLogicModule],
-    declarations: [StockPageContainer, AddStockPageContainer, EditStockPageContainer],
+    declarations: [StockPageContainer, AddStockPageContainer, EditStockPageContainer, FavoriteWinesComponent, WineResultComponent, WineResultsComponent],
     providers: [StockService]
 })
 export class StockModule {

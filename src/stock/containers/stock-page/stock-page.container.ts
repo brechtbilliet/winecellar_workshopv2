@@ -5,6 +5,10 @@ import {Store} from "@ngrx/store";
     selector: "stock-page",
     template: `        
         <default-page>
+            <collapsable-sidebar class="hidden-sm hidden-xs">
+                <favorite-wines>
+                </favorite-wines>
+            </collapsable-sidebar>
             <main>
                 <div class="row">
                     <div class="col-sm-8">
@@ -29,7 +33,8 @@ import {Store} from "@ngrx/store";
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                       {{wines$|async|json}}
+                       <wine-results [wines]="wines$|async">
+                        </wine-results>
                     </div>
                 </div>
             </main>
