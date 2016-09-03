@@ -33,7 +33,11 @@ export class AuthenticationService {
         let localStorageObj = window.localStorage.getItem(LOCALSTORAGE_AUTH);
         if (localStorageObj) {
             let authenticationResult = JSON.parse(localStorageObj);
-            this.store.dispatch({type: DATA_AUTHENTICATION_SET_AUTHENTICATION, payload: authenticationResult});
+            // evil fix for bug in @ngrx/dev-tools
+            // https://github.com/ngrx/store-devtools/issues/25
+            setTimeout(() => {
+                this.store.dispatch({type: DATA_AUTHENTICATION_SET_AUTHENTICATION, payload: authenticationResult});
+            });
         }
     }
 

@@ -19,7 +19,8 @@ import {Subscription} from "rxjs/Rx";
         <navbar [account]="account" (logout)="onLogout()" *ngIf="isAuthenticated"></navbar>
         <router-outlet></router-outlet>
         <spinner [spin]="isBusy"></spinner>
-            `
+        <ngrx-store-log-monitor toggleCommand="ctrl-t" positionCommand="ctrl-m"></ngrx-store-log-monitor>
+           `
 })
 export class ApplicationContainer implements OnInit, OnDestroy {
     isAuthenticated: boolean;
