@@ -5,7 +5,7 @@ import {Account} from "../../types/Account";
     styles: [require("./register.component.scss")],
     template: `
         <div class="form-horizontal">
-            <button type="submit" class="btn btn-primary btn-block btn-lg" (click)="onSubmit()">
+            <button type="button" class="btn btn-primary btn-block btn-lg" (click)="onSubmit()">
                 <i class="fa fa-user"></i>&nbsp;Sign up
             </button>
         </div>

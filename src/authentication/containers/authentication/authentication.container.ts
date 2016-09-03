@@ -1,7 +1,9 @@
-import {Component} from "@angular/core";
+import {Component, OnDestroy} from "@angular/core";
 import {Account} from "../../types/Account";
 import {Credentials} from "../../types/Credentials";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../../services/authentication.service";
+import {Subscription} from "rxjs/Rx";
 @Component({
     selector: "authentication",
     template: `
@@ -15,11 +17,11 @@ import {Router} from "@angular/router";
     </div>
       `
 })
-export class AuthenticationContainer {
+export class AuthenticationContainer implements OnDestroy {
     curTab: number = 0;
 
-
-    constructor(private router: Router) {
+    subscriptions: Array<Subscription> = [];
+    constructor(private router: Router, private authenticationService: AuthenticationService) {
     }
 
     enableTab(tabIndex: number): void {
@@ -27,8 +29,18 @@ export class AuthenticationContainer {
     }
 
     login(credentials: Credentials): void {
+        this.subscriptions.push(this.authenticationService.authenticate(credentials).subscribe(() => {
+            this.router.navigate(["/"]);
+        }));
     }
 
     register(account: Account): void {
+        this.subscriptions.push(this.authenticationService.register(account).subscribe(() => {
+            this.router.navigate(["/"]);
+        }));
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach(sub => sub.unsubscribe());
     }
 }

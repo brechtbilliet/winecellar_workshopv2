@@ -8,11 +8,13 @@ import {NumberPickerComponent} from "./components/number-picker/number-picker.co
 import {PanelComponent} from "./components/panel/panel.component";
 import {RatingComponent} from "./components/rating/rating.component";
 import {SpinnerComponent} from "./components/spinner/spinner.component";
+import {AuthenticatedGuard} from "./authenticated.guard";
 
 @NgModule({
     imports: [CommonModule, RouterModule],
     declarations: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent, SpinnerComponent],
-    exports: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent, SpinnerComponent]
+    exports: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent, SpinnerComponent],
+    providers: [AuthenticatedGuard]
 })
 export class CommonLogicModule {
 }

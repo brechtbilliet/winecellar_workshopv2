@@ -5,7 +5,7 @@ import {Credentials} from "../../types/Credentials";
     styles: [require("./login.component.scss")],
     template: `
         <form class="form-horizontal">
-            <button type="submit" (click)="onSubmit()" class="btn btn-primary btn-block btn-lg">
+            <button type="button" (click)="onSubmit()" class="btn btn-primary btn-block btn-lg">
                 <i class="fa fa-sign-in"></i>&nbsp;Sign in
             </button>
         </form>

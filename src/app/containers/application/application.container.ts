@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "toastr/build/toastr.css";
 import "font-awesome/css/font-awesome.css";
 import {Account} from "../../../authentication/types/Account";
+import {AuthenticationService} from "../../../authentication/services/authentication.service";
+import {Router} from "@angular/router";
 @Component({
     selector: "application",
     encapsulation: ViewEncapsulation.None,
@@ -24,7 +26,12 @@ export class ApplicationContainer {
     };
     isBusy: boolean = true;
 
+    constructor(private authenticationService: AuthenticationService, private router: Router){
+
+    }
+
     onLogout(): void{
-        alert("log me out")
+        this.router.navigate(["/authentication"]);
+        this.authenticationService.logout();
     }
 }

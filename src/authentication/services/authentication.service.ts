@@ -5,12 +5,10 @@ import {AuthenticationResult} from "../types/AuthenticationResult";
 import {Account} from "../types/Account";
 import {API_URL, LOCALSTORAGE_AUTH} from "../../configuration";
 import * as toastr from "toastr";
-import {ApplicationState} from "../../statemanagement/state/ApplicationState";
-import {Store} from "@ngrx/store";
 import {Observable} from "rxjs/Rx";
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: Http, private store: Store<ApplicationState>) {
+    constructor(private http: Http) {
     }
 
     authenticate(credentials: Credentials): Observable<AuthenticationResult> {
@@ -27,24 +25,15 @@ export class AuthenticationService {
 
     logout(): void {
         localStorage.removeItem(LOCALSTORAGE_AUTH);
-        this.store.dispatch(clearAuthentication());
-    }
-
-    checkInitialAuthentication(): void {
-        let localStorageObj = window.localStorage.getItem(LOCALSTORAGE_AUTH);
-        if (localStorageObj) {
-            this.store.dispatch(setAuthentication(JSON.parse(localStorageObj)));
-        }
     }
 
     private handleAuthenticationResult(obs$: Observable<AuthenticationResult>): Observable<AuthenticationResult> {
         obs$.subscribe((result: AuthenticationResult) => {
-                window.localStorage.setItem(LOCALSTORAGE_AUTH, JSON.stringify(result));
-                this.store.dispatch(setAuthentication(result));
-                toastr.success("successfully logged in!");
-            }, (errorResponse: Response) => {
-                toastr.error(errorResponse.json().error);
-            });
+            window.localStorage.setItem(LOCALSTORAGE_AUTH, JSON.stringify(result));
+            toastr.success("successfully logged in!");
+        }, (errorResponse: Response) => {
+            toastr.error(errorResponse.json().error);
+        });
         return obs$;
     }
 }
