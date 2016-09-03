@@ -16,14 +16,14 @@ import {Store} from "@ngrx/store";
     template: `        
         <navbar [account]="account$|async" (logout)="onLogout()" *ngIf="isAuthenticated$|async"></navbar>
         <router-outlet></router-outlet>
-        <spinner [spin]="isBusy"></spinner>
+        <spinner [spin]="isBusy$|async"></spinner>
         <ngrx-store-log-monitor toggleCommand="ctrl-t" positionCommand="ctrl-m"></ngrx-store-log-monitor>
            `
 })
 export class ApplicationContainer implements OnInit {
     isAuthenticated$ = this.store.select(state => state.data.authentication.isAuthenticated);
     account$ = this.store.select(state => state.data.authentication.account);
-    isBusy: boolean = true;
+    isBusy$ = this.store.select(state => state.containers.application.isBusy);
 
     constructor(private store: Store<ApplicationState>, private authenticationService: AuthenticationService, private router: Router){
     }
