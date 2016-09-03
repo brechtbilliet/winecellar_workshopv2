@@ -5,10 +5,11 @@ import {AboutModule} from "../about/index";
 import {StockModule} from "../stock/index";
 import {routing} from "./routes";
 import {CommonLogicModule} from "../common/index";
+import {AuthenticationModule} from "../authentication/index";
 @NgModule({
-    imports: [BrowserModule, AboutModule, StockModule, routing, CommonLogicModule],
+    imports: [BrowserModule, AboutModule, StockModule, routing, CommonLogicModule, AuthenticationModule],
     declarations: [ApplicationContainer],
-    bootstrap: [ApplicationContainer],
+    bootstrap: [ApplicationContainer]
 })
 export class AppModule {
 }
