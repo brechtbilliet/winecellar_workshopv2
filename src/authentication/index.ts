@@ -9,12 +9,13 @@ import {CommonLogicModule} from "../common/index";
 import {routing} from "./routes";
 import {AuthenticationService} from "./services/authentication.service";
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
+import {AuthenticationSandbox} from "./authentication.sandbox";
 
 @NgModule({
     imports: [FormsModule, ReactiveFormsModule, RouterModule, CommonModule, HttpModule, CommonLogicModule, routing],
     declarations: [AuthenticationContainer, LoginComponent, RegisterComponent],
     exports: [AuthenticationContainer],
-    providers: [AuthenticationService]
+    providers: [AuthenticationService, AuthenticationSandbox]
 })
 export class AuthenticationModule {
 }

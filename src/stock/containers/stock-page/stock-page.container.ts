@@ -1,11 +1,9 @@
 import {Component} from "@angular/core";
-import {ApplicationState} from "../../../statemanagement/state/ApplicationState";
-import {Store} from "@ngrx/store";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs/Rx";
 import {Wine} from "../../entities/Wine";
-import {StockService} from "../../services/stock.service";
 import * as _ from "lodash";
+import {StockSandbox} from "../../stock.sandbox";
 @Component({
     selector: "stock-page",
     template: `    
@@ -51,25 +49,25 @@ import * as _ from "lodash";
 })
 export class StockPageContainer {
     searchCtrl = new FormControl("");
-    wines$ = this.store.select(state => state.data.wines);
+    wines$ = this.sb.wines$;
     favoriteWines$ = this.wines$.map(wines => _.orderBy(wines, ["myRating"], ["desc"]));
     matchingWines$ = Observable.combineLatest(this.searchCtrl.valueChanges.startWith(""), this.wines$,
         (term: string, wines: Array<Wine>) => {
             return wines.filter(wine => wine.name.toLowerCase().indexOf(term) > -1);
         });
-    constructor(private store: Store<ApplicationState>, private stockService: StockService){
+    constructor(private sb: StockSandbox){
 
     }
 
     onRemove(wine: Wine): void {
-        this.stockService.remove(wine);
+        this.sb.removeWine(wine);
     }
 
     onSetRate(item: {wine: Wine, value: number}): void {
-        this.stockService.setRate(item.wine, item.value);
+        this.sb.setRate(item.wine, item.value);
     }
 
     onSetStock(item: {wine: Wine, value: number}): void {
-        this.stockService.setStock(item.wine, item.value);
+        this.sb.setStock(item.wine, item.value);
     }
 }

@@ -1,7 +1,5 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {ApplicationState} from "../../../statemanagement/state/ApplicationState";
-import {Store} from "@ngrx/store";
-import {CONTAINER_COLLAPSABLESIDEBAR_TOGGLE} from "../../../statemanagement/actionTypes";
+import {CommonSandbox} from "../../common.sandbox";
 @Component({
     selector: "collapsable-sidebar",
     styles: [require("./collapsable-sidebar.container.scss")],
@@ -17,12 +15,12 @@ import {CONTAINER_COLLAPSABLESIDEBAR_TOGGLE} from "../../../statemanagement/acti
     `
 })
 export class CollapsableSidebarContainer {
-    isCollapsed$ = this.store.select(state => state.containers.collapsableSidebar.isCollapsed);
+    isCollapsed$ = this.sb.isCollapsed$;
 
-    constructor(public store: Store<ApplicationState>) {
+    constructor(public sb: CommonSandbox) {
     }
 
     toggle(): void {
-        this.store.dispatch({type: CONTAINER_COLLAPSABLESIDEBAR_TOGGLE});
+        this.sb.toggleSidebar();
     }
 }

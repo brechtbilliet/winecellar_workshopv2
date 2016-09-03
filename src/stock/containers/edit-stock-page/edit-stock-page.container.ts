@@ -1,9 +1,7 @@
 import {Component} from "@angular/core";
 import {Wine} from "../../entities/Wine";
 import {ActivatedRoute, Router} from "@angular/router";
-import {StockService} from "../../services/stock.service";
-import {ApplicationState} from "../../../statemanagement/state/ApplicationState";
-import {Store} from "@ngrx/store";
+import {StockSandbox} from "../../stock.sandbox";
 @Component({
     selector: "edit-stock-page",
     template: `
@@ -24,19 +22,19 @@ import {Store} from "@ngrx/store";
 export class EditStockPageContainer {
     id = this.route.snapshot.params["id"];
 
-    editWine$ = this.store.select(state => state.data.authentication.isAuthenticated)
+    editWine$ = this.sb.isAuthenticated$
         .filter(isAuthenticated => isAuthenticated) // only when authenticated
         .flatMap(() => {
-            return this.stockService.fetchWine(this.id)
+            return this.sb.fetchWine(this.id)
         }).cache(); // avoid changedetection to run twice
 
-    constructor(public stockService: StockService, private store: Store<ApplicationState>,
+    constructor(public sb: StockSandbox,
                 private route: ActivatedRoute,
                 private router: Router) {
     }
 
     onSave(wine: Wine): void {
-        this.stockService.update(this.id, wine);
+        this.sb.updateWine(this.id, wine);
         this.router.navigate(["/stock"]);
     }
 }

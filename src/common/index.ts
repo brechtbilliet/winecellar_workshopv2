@@ -16,6 +16,7 @@ import {FormGroupPasswordComponent} from "./components/form/form-group-password/
 import {FormGroupFooterComponent} from "./components/form/form-group-footer/form-group-footer.component";
 import {FormGroupContentComponent} from "./components/form/form-group-content/form-group-content.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CommonSandbox} from "./common.sandbox";
 
 @NgModule({
     imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule],
@@ -25,7 +26,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     exports: [NavbarComponent, DefaultPageComponent, MainComponent, NumberPickerComponent, PanelComponent, RatingComponent,
         SpinnerComponent, CollapsableSidebarContainer, FormGroupContentComponent, FormGroupFooterComponent, FormGroupPasswordComponent,
         FormGroupTextareaComponent, FormGroupTextboxComponent],
-    providers: [AuthenticatedGuard]
+    providers: [AuthenticatedGuard, CommonSandbox]
 })
 export class CommonLogicModule {
 }

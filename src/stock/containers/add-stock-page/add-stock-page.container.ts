@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {Wine} from "../../entities/Wine";
-import {StockService} from "../../services/stock.service";
+import {StockSandbox} from "../../stock.sandbox";
 @Component({
     selector: "add-stock-page",
     template: `
@@ -20,11 +20,11 @@ import {StockService} from "../../services/stock.service";
   `
 })
 export class AddStockPageContainer {
-    constructor(private stockService: StockService, private router: Router) {
+    constructor(private sb: StockSandbox, private router: Router) {
     }
 
     onSave(wine: Wine): void {
-        this.stockService.add(wine);
+        this.sb.addWine(wine);
         this.router.navigate(["/stock"]);
     }
 }
