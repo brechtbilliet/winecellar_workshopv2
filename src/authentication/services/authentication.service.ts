@@ -33,7 +33,7 @@ export class AuthenticationService {
         let localStorageObj = window.localStorage.getItem(LOCALSTORAGE_AUTH);
         if (localStorageObj) {
             let authenticationResult = JSON.parse(localStorageObj);
-            this.store.dispatch({type: DATA_AUTHENTICATION_SET_AUTHENTICATION, payload: {authenticationResult}});
+            this.store.dispatch({type: DATA_AUTHENTICATION_SET_AUTHENTICATION, payload: authenticationResult});
         }
     }
 
@@ -46,7 +46,7 @@ export class AuthenticationService {
         obs$.subscribe((authenticationResult: AuthenticationResult) => {
             window.localStorage.setItem(LOCALSTORAGE_AUTH, JSON.stringify(authenticationResult));
             toastr.success("successfully logged in!");
-            this.store.dispatch({type: DATA_AUTHENTICATION_SET_AUTHENTICATION, payload: {authenticationResult}});
+            this.store.dispatch({type: DATA_AUTHENTICATION_SET_AUTHENTICATION, payload: authenticationResult});
         }, (errorResponse: Response) => {
             toastr.error(errorResponse.json().error);
         });
