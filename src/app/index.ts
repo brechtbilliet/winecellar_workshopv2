@@ -13,6 +13,7 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {RequestOptions, XHRBackend, Http} from "@angular/http";
 import {CustomHttp} from "./customHttp";
 import {ApplicationState} from "../statemanagement/state/ApplicationState";
+import {AppSandbox} from "./app.sandbox";
 @NgModule({
     imports: [BrowserModule, AboutModule, StockModule, routing, CommonLogicModule, AuthenticationModule, StoreModule.provideStore(rootReducer),
         StoreLogMonitorModule, StoreDevtoolsModule.instrumentStore({
@@ -23,7 +24,7 @@ import {ApplicationState} from "../statemanagement/state/ApplicationState";
         })],
     declarations: [ApplicationContainer],
     bootstrap: [ApplicationContainer],
-    providers: [{
+    providers: [AppSandbox, {
         provide: Http,
         useFactory: (backend: XHRBackend,
                      defaultOptions: RequestOptions,

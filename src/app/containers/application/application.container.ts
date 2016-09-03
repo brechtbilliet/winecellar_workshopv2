@@ -4,12 +4,9 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "toastr/build/toastr.css";
 import "font-awesome/css/font-awesome.css";
-import {AuthenticationService} from "../../../authentication/services/authentication.service";
 import {Router} from "@angular/router";
-import {ApplicationState} from "../../../statemanagement/state/ApplicationState";
-import {Store} from "@ngrx/store";
-import {StockService} from "../../../stock/services/stock.service";
 import {Subscription} from "rxjs/Rx";
+import {AppSandbox} from "../../app.sandbox";
 @Component({
     selector: "application",
     encapsulation: ViewEncapsulation.None,
@@ -23,25 +20,24 @@ import {Subscription} from "rxjs/Rx";
            `
 })
 export class ApplicationContainer implements OnInit, OnDestroy {
-    isAuthenticated$ = this.store.select(state => state.data.authentication.isAuthenticated);
-    account$ = this.store.select(state => state.data.authentication.account);
-    isBusy$ = this.store.select(state => state.containers.application.isBusy);
+    isAuthenticated$ = this.sb.isAuthenticated$;
+    account$ = this.sb.account$;
+    isBusy$ = this.sb.isBusy$;
 
     private subscriptions: Array<Subscription> = [];
-    constructor(private store: Store<ApplicationState>, private authenticationService: AuthenticationService,
-                private router: Router, private stockService: StockService){
+    constructor(private sb: AppSandbox, private router: Router){
     }
 
     onLogout(): void{
         this.router.navigate(["/authentication"]);
-        this.authenticationService.logout();
+        this.sb.logout();
     }
 
     ngOnInit(): void {
-        this.authenticationService.checkInitialAuthentication();
+        this.sb.checkInitialAuthentication();
         this.subscriptions.push(this.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
             if (isAuthenticated) {
-                this.stockService.load();
+                this.sb.loadWines();
             }
         }));
     }
