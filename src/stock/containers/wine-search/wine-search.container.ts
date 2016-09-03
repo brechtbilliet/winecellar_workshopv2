@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnDestroy, OnInit} from "@angular/core";
-import {Subject, Subscription} from "rxjs";
+import {Subscription, BehaviorSubject} from "rxjs";
 import {Product, WineComSearchResult, WineComService} from "../../services/wineCom.service";
 import {FormControl} from "@angular/forms";
 
@@ -14,10 +14,10 @@ import {FormControl} from "@angular/forms";
             </label>
             <div class="col-sm-8">
                 <input type="text" [formControl]="control" class="form-control input-lg" id="searchInput" 
-                    autocomplete="off" placeholder="Name"/>
+                    autocomplete="off" placeholder="Name" />
                 <span *ngIf="control.valid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                 <ul class="wine-search-results">
-                    <li *ngFor="let item of winesToShow$|async" (click)="selectWine(item)">
+                    <li *ngFor="let item of winesToShow$|async" (click)="onSelectWine(item)">
                         <img src="{{item.labels[0].url}}" alt=""/> {{item.name}} 
                     </li>
                 </ul>
@@ -27,9 +27,9 @@ import {FormControl} from "@angular/forms";
 })
 export class WineSearchContainer implements OnDestroy, OnInit {
     @Input() control: FormControl;
-    @Output() select = new EventEmitter<Product>();
+    @Output() selectWine = new EventEmitter<Product>();
 
-    winesToShow$ = Subject.create();
+    winesToShow$ = new BehaviorSubject([]);
 
     private foundWineName: string;
     private subscriptions: Array<Subscription> = [];
@@ -37,9 +37,9 @@ export class WineSearchContainer implements OnDestroy, OnInit {
     constructor(private wineComService: WineComService) {
     }
 
-    selectWine(wine: Product): void {
+    onSelectWine(wine: Product): void {
         this.foundWineName = wine.name;
-        this.select.emit(wine);
+        this.selectWine.emit(wine);
         this.winesToShow$.next([]); // clear
     }
 
