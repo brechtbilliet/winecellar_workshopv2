@@ -6,8 +6,10 @@ import {StockModule} from "../stock/index";
 import {routing} from "./routes";
 import {CommonLogicModule} from "../common/index";
 import {AuthenticationModule} from "../authentication/index";
+import {rootReducer} from "../statemanagement/rootReducer";
+import {StoreModule} from "@ngrx/store";
 @NgModule({
-    imports: [BrowserModule, AboutModule, StockModule, routing, CommonLogicModule, AuthenticationModule],
+    imports: [BrowserModule, AboutModule, StockModule, routing, CommonLogicModule, AuthenticationModule, StoreModule.provideStore(rootReducer)],
     declarations: [ApplicationContainer],
     bootstrap: [ApplicationContainer]
 })
