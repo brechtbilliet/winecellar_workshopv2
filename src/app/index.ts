@@ -5,8 +5,10 @@ import {AboutModule} from "../about/index";
 import {StockModule} from "../stock/index";
 import {routing} from "./routes";
 import {CommonLogicModule} from "../common/index";
+import {StoreModule} from "@ngrx/store";
+import {rootReducer} from "../statemanagement/rootReducer";
 @NgModule({
-    imports: [BrowserModule, AboutModule, StockModule, routing, CommonLogicModule],
+    imports: [BrowserModule, AboutModule, StockModule, routing, CommonLogicModule, StoreModule.provideStore(rootReducer)],
     declarations: [ApplicationContainer],
     bootstrap: [ApplicationContainer],
 })
