@@ -14,7 +14,8 @@ import {Account} from "../../../authentication/types/Account";
         <navbar [account]="account" (logout)="onLogout()"></navbar>
         <router-outlet></router-outlet>
         <spinner [spin]="isBusy"></spinner>
-            `
+        <ngrx-store-log-monitor toggleCommand="ctrl-t" positionCommand="ctrl-m"></ngrx-store-log-monitor>
+        `
 })
 export class ApplicationContainer {
     account: Account = {
