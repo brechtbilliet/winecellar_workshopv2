@@ -12,11 +12,12 @@ import {WineResultsComponent} from "./components/wine-results/wine-results.compo
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DetailWineFormComponent} from "./components/detail-wine-form/detail-wine-form.component";
 import {WineComService} from "./services/wineCom.service";
+import {WineSearchContainer} from "./containers/wine-search/wine-search.container";
 
 @NgModule({
     imports: [FormsModule, ReactiveFormsModule, CommonModule, routing, CommonLogicModule],
     declarations: [StockPageContainer, AddStockPageContainer, EditStockPageContainer, FavoriteWinesComponent,
-        WineResultComponent, WineResultsComponent, DetailWineFormComponent],
+        WineResultComponent, WineResultsComponent, DetailWineFormComponent, WineSearchContainer],
     providers: [StockService, WineComService]
 })
 export class StockModule {

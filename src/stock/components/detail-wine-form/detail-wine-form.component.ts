@@ -1,13 +1,13 @@
 import {Component, ChangeDetectionStrategy, Input, Output, OnInit, EventEmitter} from "@angular/core";
 import {Wine} from "../../entities/Wine";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {Product} from "../../services/wineCom.service";
 @Component({
     selector: "detail-wine-form",
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <form [formGroup]="wineForm" class="form-horizontal col-sm-12" (ngSubmit)="onSubmit()">
-            <form-group-textbox [label]="'Name'" [placeholder]="'Enter name'" [control]="wineForm.controls.name" >
-            </form-group-textbox>
+            <wine-search [control]="wineForm.controls.name" (select)="selectWine($event)"></wine-search>
             <form-group-textarea [label]="'Description'" [control]="wineForm.controls.description"
                                  [placeholder]="'Enter description'">
             </form-group-textarea>
@@ -62,5 +62,15 @@ export class DetailWineFormComponent implements OnInit {
 
     setInStock(inStock: number): void {
         this.wine.inStock = inStock;
+    }
+
+    selectWine(wine: Product): void {
+        this.wineForm.setValue({
+            name: wine.name,
+            description: wine.description,
+            price: wine.priceRetail,
+            region: wine.appellation ? wine.appellation.region.name : ""
+        });
+        this.wine.image = wine.labels.length > 0 ? wine.labels[0].url : null;
     }
 }
