@@ -1,8 +1,9 @@
-import {Component, Output, EventEmitter, Input} from "@angular/core";
+import {Component, Output, EventEmitter, Input, ChangeDetectionStrategy} from "@angular/core";
 import {Account} from "../../../authentication/types/Account";
 @Component({
     selector: "navbar",
     styles: [require("./navbar.component.scss")],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
       <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">

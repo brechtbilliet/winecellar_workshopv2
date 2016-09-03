@@ -1,8 +1,9 @@
-import {Component, Output, EventEmitter, Input} from "@angular/core";
+import {Component, Output, EventEmitter, Input, ChangeDetectionStrategy} from "@angular/core";
 import {Credentials} from "../../types/Credentials";
 @Component({
     selector: "login",
     styles: [require("./login.component.scss")],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <form class="form-horizontal">
             <button type="button" (click)="onSubmit()" class="btn btn-primary btn-block btn-lg">

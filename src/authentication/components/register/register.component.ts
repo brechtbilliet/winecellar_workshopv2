@@ -1,8 +1,9 @@
-import {Component, Output, EventEmitter, Input} from "@angular/core";
+import {Component, Output, EventEmitter, Input, ChangeDetectionStrategy} from "@angular/core";
 import {Account} from "../../types/Account";
 @Component({
     selector: "register",
     styles: [require("./register.component.scss")],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <div class="form-horizontal">
             <button type="button" class="btn btn-primary btn-block btn-lg" (click)="onSubmit()">

@@ -1,7 +1,8 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
+import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from "@angular/core";
 import {Wine} from "../../entities/Wine";
 @Component({
     selector: "favorite-wines",
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styles: [require("./favorite-wines.component.scss")],
     template: `    
     <div>

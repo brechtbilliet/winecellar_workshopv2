@@ -1,7 +1,8 @@
-import {Component, Output, Input, EventEmitter} from "@angular/core";
+import {Component, Output, Input, EventEmitter, ChangeDetectionStrategy} from "@angular/core";
 import {Wine} from "../../entities/Wine";
 @Component({
     selector: "wine-results",
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <table class="table table-striped">
             <thead>
