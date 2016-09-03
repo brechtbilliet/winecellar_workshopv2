@@ -1,5 +1,5 @@
 import {Title} from "@angular/platform-browser";
-import {Component, ViewEncapsulation, OnInit} from "@angular/core";
+import {Component, ViewEncapsulation, OnInit, OnDestroy} from "@angular/core";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "toastr/build/toastr.css";
@@ -8,6 +8,8 @@ import {AuthenticationService} from "../../../authentication/services/authentica
 import {Router} from "@angular/router";
 import {ApplicationState} from "../../../statemanagement/state/ApplicationState";
 import {Store} from "@ngrx/store";
+import {StockService} from "../../../stock/services/stock.service";
+import {Subscription} from "rxjs/Rx";
 @Component({
     selector: "application",
     encapsulation: ViewEncapsulation.None,
@@ -20,12 +22,14 @@ import {Store} from "@ngrx/store";
         <ngrx-store-log-monitor toggleCommand="ctrl-t" positionCommand="ctrl-m"></ngrx-store-log-monitor>
            `
 })
-export class ApplicationContainer implements OnInit {
+export class ApplicationContainer implements OnInit, OnDestroy {
     isAuthenticated$ = this.store.select(state => state.data.authentication.isAuthenticated);
     account$ = this.store.select(state => state.data.authentication.account);
     isBusy$ = this.store.select(state => state.containers.application.isBusy);
 
-    constructor(private store: Store<ApplicationState>, private authenticationService: AuthenticationService, private router: Router){
+    private subscriptions: Array<Subscription> = [];
+    constructor(private store: Store<ApplicationState>, private authenticationService: AuthenticationService,
+                private router: Router, private stockService: StockService){
     }
 
     onLogout(): void{
@@ -35,5 +39,14 @@ export class ApplicationContainer implements OnInit {
 
     ngOnInit(): void {
         this.authenticationService.checkInitialAuthentication();
+        this.subscriptions.push(this.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
+            if (isAuthenticated) {
+                this.stockService.load();
+            }
+        }));
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach(sub => sub.unsubscribe());
     }
 }

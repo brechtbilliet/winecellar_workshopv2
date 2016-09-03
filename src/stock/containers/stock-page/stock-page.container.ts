@@ -1,4 +1,6 @@
 import {Component} from "@angular/core";
+import {ApplicationState} from "../../../statemanagement/state/ApplicationState";
+import {Store} from "@ngrx/store";
 @Component({
     selector: "stock-page",
     template: `        
@@ -27,10 +29,7 @@ import {Component} from "@angular/core";
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <panel [header]="'Hi there'">
-                            <number-picker [amount]="amount" (setAmount)="onSetAmount($event)"></number-picker>
-                            <rating [rating]="rating" [big]="true" (setRate)="onSetRate($event)"></rating>
-                        </panel>
+                       {{wines$|async|json}}
                     </div>
                 </div>
             </main>
@@ -38,14 +37,9 @@ import {Component} from "@angular/core";
              `
 })
 export class StockPageContainer {
-    amount = 5;
-    rating = 3;
+    wines$ = this.store.select(state => state.data.wines);
 
-    onSetAmount(amount: number): void {
-        this.amount = amount;
-    }
+    constructor(private store: Store<ApplicationState>){
 
-    onSetRate(rating: number): void {
-        this.rating = rating;
     }
 }
