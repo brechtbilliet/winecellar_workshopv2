@@ -8,10 +8,8 @@ import "font-awesome/css/font-awesome.css";
     selector: "application",
     providers: [Title],
     template: `
-        Hello world
-        
-        <about-page></about-page>
-        <stock-page></stock-page>
+        <navbar></navbar>
+        <router-outlet></router-outlet>
     `
 })
 export class ApplicationContainer {
