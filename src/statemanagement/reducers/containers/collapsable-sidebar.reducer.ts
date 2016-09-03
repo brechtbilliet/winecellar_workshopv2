@@ -7,5 +7,5 @@ let initialState: CollapsableSidebarContainerState = {
 
 export function collapsableSidebarReducer(state: CollapsableSidebarContainerState = initialState,
                                           action: Action): CollapsableSidebarContainerState {
-    return state;
+    return null;
 };

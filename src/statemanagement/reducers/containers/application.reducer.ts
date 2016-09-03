@@ -7,5 +7,5 @@ let initialState: ApplicationContainerState = {
 
 export function applicationReducer(state: ApplicationContainerState = initialState,
                                    action: Action): ApplicationContainerState {
-    return state;
+   return null;
 };
