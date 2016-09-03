@@ -10,10 +10,12 @@ import {FavoriteWinesComponent} from "./components/favorite-wines/favorite-wines
 import {WineResultComponent} from "./components/wine-result/wine-result.component";
 import {WineResultsComponent} from "./components/wine-results/wine-results.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {DetailWineFormComponent} from "./components/detail-wine-form/detail-wine-form.component";
 
 @NgModule({
     imports: [FormsModule, ReactiveFormsModule, CommonModule, routing, CommonLogicModule],
-    declarations: [StockPageContainer, AddStockPageContainer, EditStockPageContainer, FavoriteWinesComponent, WineResultComponent, WineResultsComponent],
+    declarations: [StockPageContainer, AddStockPageContainer, EditStockPageContainer, FavoriteWinesComponent,
+        WineResultComponent, WineResultsComponent, DetailWineFormComponent],
     providers: [StockService]
 })
 export class StockModule {

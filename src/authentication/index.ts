@@ -8,9 +8,10 @@ import {RegisterComponent} from "./components/register/register.component";
 import {CommonLogicModule} from "../common/index";
 import {routing} from "./routes";
 import {AuthenticationService} from "./services/authentication.service";
+import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 
 @NgModule({
-    imports: [RouterModule, CommonModule, HttpModule, CommonLogicModule, routing],
+    imports: [FormsModule, ReactiveFormsModule, RouterModule, CommonModule, HttpModule, CommonLogicModule, routing],
     declarations: [AuthenticationContainer, LoginComponent, RegisterComponent],
     exports: [AuthenticationContainer],
     providers: [AuthenticationService]
