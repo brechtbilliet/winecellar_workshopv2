@@ -27,10 +27,9 @@ import {Component} from "@angular/core";
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <panel>
-                            <number-picker></number-picker>
-                            <rating></rating>
-                            <spinner></spinner>
+                        <panel [header]="'Hi there'">
+                            <number-picker [amount]="amount" (setAmount)="onSetAmount($event)"></number-picker>
+                            <rating [rating]="rating" [big]="true" (setRate)="onSetRate($event)"></rating>
                         </panel>
                     </div>
                 </div>
@@ -39,5 +38,14 @@ import {Component} from "@angular/core";
              `
 })
 export class StockPageContainer {
+    amount = 5;
+    rating = 3;
 
+    onSetAmount(amount: number): void {
+        this.amount = amount;
+    }
+
+    onSetRate(rating: number): void {
+        this.rating = rating;
+    }
 }
