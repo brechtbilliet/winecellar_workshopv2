@@ -1,7 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {StockPageContainer} from "./containers/stock-page/stock-page.container";
-import {routing} from "./routes";
 import {CommonLogicModule} from "../common/index";
 import {AddStockPageContainer} from "./containers/add-stock-page/add-stock-page.container";
 import {EditStockPageContainer} from "./containers/edit-stock-page/edit-stock-page.container";
@@ -14,11 +13,13 @@ import {DetailWineFormComponent} from "./components/detail-wine-form/detail-wine
 import {WineComService} from "./services/wineCom.service";
 import {WineSearchContainer} from "./containers/wine-search/wine-search.container";
 import {StockSandbox} from "./stock.sandbox";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
-    imports: [FormsModule, ReactiveFormsModule, CommonModule, routing, CommonLogicModule],
+    imports: [FormsModule, ReactiveFormsModule, CommonModule, CommonLogicModule, RouterModule],
     declarations: [StockPageContainer, AddStockPageContainer, EditStockPageContainer, FavoriteWinesComponent,
         WineResultComponent, WineResultsComponent, DetailWineFormComponent, WineSearchContainer],
+    exports: [StockPageContainer, AddStockPageContainer, EditStockPageContainer],
     providers: [StockService, WineComService, StockSandbox]
 })
 export class StockModule {

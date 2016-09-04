@@ -14,8 +14,9 @@ import {RequestOptions, XHRBackend, Http} from "@angular/http";
 import {CustomHttp} from "./customHttp";
 import {ApplicationState} from "../statemanagement/state/ApplicationState";
 import {AppSandbox} from "./app.sandbox";
+import {RouterModule} from "@angular/router";
 @NgModule({
-    imports: [BrowserModule, AboutModule, StockModule, routing, CommonLogicModule, AuthenticationModule, StoreModule.provideStore(rootReducer),
+    imports: [BrowserModule, AboutModule, StockModule, RouterModule, routing, CommonLogicModule, AuthenticationModule, StoreModule.provideStore(rootReducer),
         StoreLogMonitorModule, StoreDevtoolsModule.instrumentStore({
             monitor: useLogMonitor({
                 visible: false,
