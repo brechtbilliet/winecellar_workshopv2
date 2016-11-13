@@ -53,18 +53,19 @@
     "webpack-dev-server": "1.14.1"
   },
   "dependencies": {
-    "@angular/common": "2.0.0-rc.6",
-    "@angular/compiler": "2.0.0-rc.6",
-    "@angular/core": "2.0.0-rc.6",
-    "@angular/forms": "2.0.0-rc.6",
-    "@angular/http": "2.0.0-rc.6",
-    "@angular/platform-browser": "2.0.0-rc.6",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.6",
-    "@angular/router": "3.0.0-rc.2",
-    "@ngrx/core": "1.0.2",
-    "@ngrx/store": "2.1.2",
-    "@ngrx/store-devtools": "3.0.0",
-    "@ngrx/store-log-monitor": "3.0.0",
+    "@angular/common": "2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/core": "2.0.0",
+    "@angular/forms": "2.0.0",
+    "@angular/http": "2.0.0",
+    "@angular/platform-browser": "2.0.0",
+    "@angular/platform-browser-dynamic": "2.0.0",
+    "@angular/platform-server": "2.0.0",
+    "@angular/router": "3.0.0",
+    "@ngrx/core": "1.2.0",
+    "@ngrx/store": "2.2.1",
+    "@ngrx/store-devtools": "3.1.0",
+    "@ngrx/store-log-monitor": "3.0.2",
     "bootstrap": "3.3.6",
     "core-js": "2.4.1",
     "create-reducer-tree": "0.0.7",
@@ -74,9 +75,9 @@
     "jasmine": "2.4.1",
     "jquery": "2.2.3",
     "lodash": "4.0.0",
-    "rxjs": "5.0.0-beta.11",
+    "rxjs": "5.0.0-beta.12",
     "toastr": "2.1.2",
     "ts-helpers": "1.1.1",
-    "zone.js": "0.6.17"
+    "zone.js": "0.6.21"
   }
 }
